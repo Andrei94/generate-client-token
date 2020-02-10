@@ -5,14 +5,14 @@ import io.micronaut.core.annotation.*;
 @Introspected
 public class GenerateClientToken {
 
-    private String name;
+    private String customerId;
 
-    public String getName() {
-        return name;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 }
 
