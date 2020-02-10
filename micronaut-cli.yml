@@ -1,0 +1,5 @@
+profile: function-aws
+defaultPackage: generate.client.token
+---
+testFramework: junit
+sourceLanguage: java
