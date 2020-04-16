@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 @FunctionBean("generate-client-token")
 public class GenerateClientTokenFunction extends FunctionInitializer implements Function<GenerateClientToken, Token> {
-	private static BraintreeGateway gateway = Application.gateway;
+	private final BraintreeGateway gateway = BraintreeGatewayFactory.fromConfigFile(new File("gateway.properties"));
 
 	@Override
 	public Token apply(GenerateClientToken msg) {
@@ -23,11 +23,6 @@ public class GenerateClientTokenFunction extends FunctionInitializer implements 
 	 * where the argument to echo is the JSON to be parsed.
 	 */
 	public static void main(String... args) throws IOException {
-		File file = new File("gateway.properties");
-		if(file.exists())
-			gateway = BraintreeGatewayFactory.fromConfigFile(file);
-		else
-			gateway = BraintreeGatewayFactory.fromConfigMapping(System.getenv());
 		GenerateClientTokenFunction function = new GenerateClientTokenFunction();
 		function.run(args, (context) -> function.apply(context.get(GenerateClientToken.class)));
 	}
